@@ -27,7 +27,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw(
 
 );
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 
 use Net::SPOCP::SExpr;
@@ -118,7 +118,7 @@ Implements the protocol described at http://www.spocp.org.
 =head1 AUTHOR
 
 Leif Johansson <leifj@it.su.se>
-Klas Lindforss <kllin@it.su.se>
+Klas Lindfors <kllin@it.su.se>
 
 =head1 BUGS
 
