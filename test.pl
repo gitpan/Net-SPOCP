@@ -8,7 +8,10 @@
 use Test;
 BEGIN { plan tests => 1 };
 use Net::SPOCP qw(:all);
-ok(1); # If we made it this far, we're ok.
+use strict;
+
+my $count;
+ok(++$count); # If we made it this far, we're ok.
 
 #########################
 
@@ -17,7 +20,7 @@ my $e1 = Net::SPOCP::SExpr->new(spocp=>
 				[action=>'read'],
 				[subject=>[uid=>100]]);
 
-ok(2);
+ok(++$count);
 
 my $e2 = Net::SPOCP->rule(resource => spocp_split_parts('/','internal','foo/index.html','-'),
 			  action   => [0,1],
@@ -28,18 +31,25 @@ my $e2 = Net::SPOCP->rule(resource => spocp_split_parts('/','internal','foo/inde
 						authname=>'foo',
 						authtype=>'Basic'));
 
+ok(++$count);
 
-ok(3);
+my $e3 = Net::SPOCP::SExpr->new('(spocp(resource(file etc groups))(action read)(subject(uid 100)))');
+
+ok(++$count);
 print $e1->toString(),"\n";
-ok(4);
+ok(++$count);
 print $e2->toString(),"\n";
-ok(5);
-my $client = Net::SPOCP::Client->new(server=>'auth2.su.se:3456');
-ok(6);
+ok(++$count);
+print $e3->toString(),"\n";
+ok(++$count);
+$e1->toString() eq $e3->toString() or die;
+ok(++$count);
+my $client = Net::SPOCP::Client->new(server=>'spocp.su.se:4751');
+ok(++$count);
 my $res = $client->query([test => [host => 'trurl.it.su.se'],[uid => 'leifj']]);
-ok(7);
+ok(++$count);
 printf "%s\n",$res->error;
 printf "%s\n",$res->code;
-ok(8);
+ok(++$count);
 # Insert your test code below, the Test module is use()ed here so read
 # its man page ( perldoc Test ) for help writing this test script.

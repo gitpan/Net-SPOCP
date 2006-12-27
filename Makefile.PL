@@ -10,6 +10,12 @@ WriteMakefile(
       Parse::Yapp => 0,
       IO::Socket::SSL => 0,
     },
+    'PM' => {
+      'SPOCP.pm' => '$(INST_LIBDIR)/SPOCP.pm',
+      'SPOCP/Protocol.pm' => '$(INST_LIBDIR)/SPOCP/Protocol.pm',
+      'SPOCP/SExpr.pm' => '$(INST_LIBDIR)/SPOCP/SExpr.pm',
+      'SPOCP/SExpr/Parser.pm' => '$(INST_LIBDIR)/SPOCP/SExpr/Parser.pm'
+    },
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM => 'SPOCP.pm', # retrieve abstract from module
        AUTHOR     => 'Leif Johansson <leifj@it.su.se>') : ()),
